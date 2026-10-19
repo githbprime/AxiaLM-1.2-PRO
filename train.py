@@ -1,25 +1,3 @@
-# %% [markdown]
-# # AxiaLM 1.2 PRO - train + test chat inference and tool use (Colab / Kaggle / local)
-#
-# Everything the plan asks for on the Python side, in one file (cells are split by `# %%`):
-#   * model: 6.5M params, d=192, 14 layers, GQA 6 query heads -> 2 KV heads, ctx 512, SwiGLU, tied embeddings,
-#     lowercase BPE (4,000 tokens), 8-level (3-bit) weight QAT: 2 weights per printable lowercase ASCII character
-#   * data blend streamed on the fly: FineWeb-Edu, UltraChat, procedural dialogues (recall / guardrails / identity)
-#     and agent dialogues (~15%: math, date/time, database, translate)
-#   * think scratchpad:  <think> state: ... </think>        (hidden)
-#   * agent workflow:    ... let me check. <call> math | multiplication | 43 | 60 </call>   (runtime stops here,
-#     runs the tool, injects  <result> 2580 </result>  and lets the model continue)
-#   * a Python reference of the exact runtime the goboscript engine will copy: tools, stop rules, parsing, display
-#   * probes that score tool use end-to-end, a scripted demo and an interactive chat
-#
-# How to run on Colab: Runtime -> T4 GPU (or better), paste this file as one notebook, run top to bottom.
-# Defaults: the 6.5M model, the plan's full 6.5B-token run, Google Drive OFF.
-# Without Drive the checkpoint (weights + optimizer + tokenizer + fact list, all inside ONE .pt) is written to the runtime's
-# files and downloaded to your computer every DOWNLOAD_EVERY_HOURS and when the session limit stops training. In the next
-# runtime upload that .pt into Colab's Files panel (anywhere under /content) and run the notebook again: it finds the .pt,
-# restores everything from it and carries on from the saved step.
-# RUN = "smoke" checks that everything works in a few minutes (the model will NOT be good yet); RUN = "colab" is ~1B tokens.
-
 # %% 0 - setup and config
 # !pip install -q datasets            (Colab already has it)
 # !pip install -q deep-translator     (optional: lets you try a real translator in tests, see TRANSLATE_HOOK)
