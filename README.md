@@ -1,4 +1,4 @@
-# AxiaLM-1.2-PRO
+# AxiaLM 1.2 PRO
 6.5 Million parameter agentic LLM trained on about 6.5 billion tokens of training data to be run in [Scratch](https://scratch.mit.edu) and/or [TurboWarp](https://turbowarp.org).
 
 ---
